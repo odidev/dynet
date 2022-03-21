@@ -1,5 +1,5 @@
 FROM quay.io/pypa/manylinux2014_aarch64
 MAINTAINER Daniel Hershcovich
 ADD .travis/ /root/.travis
-RUN yum install -y cmake
+RUN yum install -y libgcc
 WORKDIR /root/.travis
