@@ -8,7 +8,7 @@ cd "$TRAVIS_BUILD_DIR"
 if [[ "$BUILD_ARCH" == i686 ]]; then
   yum install -y openssl-devel
 else
-  yum install -y gmp-devel
+  yum install -y gmp-devel libgcc
 fi
 # Compile wheels
 for PYBIN in /opt/python/*${PYVER/./}*/bin; do
