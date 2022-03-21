@@ -1,7 +1,7 @@
 sudo: required
 services:
   - docker
-dist: trusty
+dist: xenial
 env:
   global:
     - PYTHON=python TWINE_USERNAME=danielh
@@ -9,57 +9,13 @@ env:
 branches:
   only:
     - master
-    - /^[0-9.]*$/
+    - arm_test
 stages:
   - test
   - name: test_pip
     if: repo = clab/dynet AND tag IS present
 jobs:
   include:
-    - os: osx
-      compiler: clang
-      language: cpp
-      env: PYVER=2.7 PYNUM=2 PYTHON_INSTALL=manual
-      if: type = cron OR tag IS present
-    - os: osx
-      compiler: clang
-      language: cpp
-      env: PYVER=2.7 PYNUM=2 PYTHON_INSTALL=pip BUILD_ARCH=x86_64
-      if: type = cron OR tag IS present
-    - os: osx
-      compiler: clang
-      language: cpp
-      env: PYVER=3.5 PYNUM=3 PYTHON_INSTALL=manual
-      if: type = cron OR tag IS present
-    - os: osx
-      compiler: clang
-      language: cpp
-      env: PYVER=3.5 PYNUM=3 PYTHON_INSTALL=pip BUILD_ARCH=x86_64
-      if: type = cron OR tag IS present
-    - os: osx
-      compiler: clang
-      language: cpp
-      env: PYVER=3.6 PYNUM=3 PYTHON_INSTALL=manual
-    - os: osx
-      compiler: clang
-      language: cpp
-      env: PYVER=3.6 PYNUM=3 PYTHON_INSTALL=pip BUILD_ARCH=x86_64
-    - os: osx
-      compiler: clang
-      language: cpp
-      env: PYVER=3.7 PYNUM=3 PYTHON_INSTALL=manual
-    - os: osx
-      compiler: clang
-      language: cpp
-      env: PYVER=3.8 PYNUM=3 PYTHON_INSTALL=manual
-    - os: osx
-      compiler: clang
-      language: cpp
-      env: PYVER=3.7 PYNUM=3 PYTHON_INSTALL=pip BUILD_ARCH=x86_64
-    - os: osx
-      compiler: clang
-      language: cpp
-      env: PYVER=3.8 PYNUM=3 PYTHON_INSTALL=pip BUILD_ARCH=x86_64
     - os: linux
       compiler: gcc
       language: cpp
