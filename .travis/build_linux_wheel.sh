@@ -2,7 +2,7 @@
 set -xe
 
 # To be run inside docker container
-export CMAKE=cmake28 EIGEN3_INCLUDE_DIR="$TRAVIS_BUILD_DIR/eigen" LD_LIBRARY_PATH="$TRAVIS_BUILD_DIR/build/dynet:$LD_LIBRARY_PATH"
+export CMAKE=cmake EIGEN3_INCLUDE_DIR="$TRAVIS_BUILD_DIR/eigen" LD_LIBRARY_PATH="$TRAVIS_BUILD_DIR/build/dynet:$LD_LIBRARY_PATH"
 cd "$TRAVIS_BUILD_DIR"
 
 if [[ "$BUILD_ARCH" == i686 ]]; then
