@@ -23,19 +23,24 @@ jobs:
       python: 3.6
       env: PYVER=3.6 PYNUM=3 PYTHON_INSTALL=pip BUILD_ARCH=aarch64
     - os: linux
-      arch: arm64
-      dist: xenial
       compiler: gcc
       language: python
-      python: 3.7
-      env: PYVER=3.7 PYNUM=3 PYTHON_INSTALL=pip BUILD_ARCH=aarch64
-    - os: linux
-      arch: arm64
-      dist: xenial
-      compiler: gcc
-      language: python
-      python: 3.8
-      env: PYVER=3.8 PYNUM=3 PYTHON_INSTALL=pip BUILD_ARCH=aarch64
+      python: 3.6
+      env: PYVER=3.6 PYNUM=3 PYTHON_INSTALL=pip BUILD_ARCH=x86_64
+    #- os: linux
+    #  arch: arm64
+    #  dist: xenial
+    #  compiler: gcc
+    #  language: python
+    #  python: 3.7
+    #  env: PYVER=3.7 PYNUM=3 PYTHON_INSTALL=pip BUILD_ARCH=aarch64
+    #- os: linux
+    #  arch: arm64
+    #  dist: xenial
+    #  compiler: gcc
+    #  language: python
+    #  python: 3.8
+    #  env: PYVER=3.8 PYNUM=3 PYTHON_INSTALL=pip BUILD_ARCH=aarch64
     
 install:
   - travis_retry .travis/install_dependencies.sh
