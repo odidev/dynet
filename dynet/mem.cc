@@ -10,7 +10,7 @@
 
 #include <fcntl.h>
 #if !_WINDOWS
-/*#include <mm_malloc.h>*/
+#include <mm_malloc.h>
 #endif
 #include "dynet/except.h"
 #include "dynet/devices.h"
