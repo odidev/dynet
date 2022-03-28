@@ -9,9 +9,9 @@
 #endif
 
 #include <fcntl.h>
-/*#if !_WINDOWS
+#if !_WINDOWS
 #include <mm_malloc.h>
-#endif*/
+#endif
 #include "dynet/except.h"
 #include "dynet/devices.h"
 #if HAVE_CUDA
