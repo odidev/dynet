@@ -2,7 +2,7 @@ FROM quay.io/pypa/manylinux2014_aarch64
 MAINTAINER Daniel Hershcovich
 ADD .travis/ /root/.travis
 #RUN yum install -y libgcc
-RUN yum install -y clang gcc
+RUN yum install -y clang gcc cmake
 #RUN cp -r /usr/lib/clang /usr/bin/
 RUN ls -l /usr/bin/clang
 WORKDIR /root/.travis
