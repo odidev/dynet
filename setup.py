@@ -103,7 +103,7 @@ CMAKE_PATH = ENV.get("CMAKE", find_executable("cmake"))
 MAKE_PATH = ENV.get("MAKE", find_executable("make"))
 MAKE_FLAGS = ENV.get("MAKE_FLAGS", "-j %d" % cpu_count()).split()
 CC_PATH = ENV.get("CC", find_executable("clang"))
-CXX_PATH = ENV.get("CXX", find_executable("g++"))
+CXX_PATH = ENV.get("CXX", find_executable("clang++"))
 INSTALL_PREFIX = os.path.join(get_python_lib(), os.pardir, os.pardir, os.pardir)
 PYTHON = sys.executable
 
