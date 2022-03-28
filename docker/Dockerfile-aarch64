@@ -3,6 +3,6 @@ MAINTAINER Daniel Hershcovich
 ADD .travis/ /root/.travis
 #RUN yum install -y libgcc
 RUN yum install -y clang
-RUN mv /usr/lib/clang /usr/bin/
+RUN cp -r /usr/lib/clang /usr/bin/
 RUN ls -l /usr/bin/clang
 WORKDIR /root/.travis
