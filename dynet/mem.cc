@@ -29,8 +29,11 @@ namespace dynet {
 MemAllocator::~MemAllocator() {}
 
 void* CPUAllocator::malloc(size_t n) {
-  /*void* ptr = _mm_malloc(n, align);*/
+#if !__ARM_ARCH_ISA_A64
   void* ptr = aligned_alloc(align, n);
+else
+  void* ptr = _mm_malloc(n, align);
+#endif
   if (!ptr) {
     show_pool_mem_info();
     cerr << "CPU memory allocation failed n=" << n << " align=" << align << endl;
@@ -40,8 +43,11 @@ void* CPUAllocator::malloc(size_t n) {
 }
 
 void CPUAllocator::free(void* mem) {
-  /*_mm_free(mem);*/
+#if !__ARM_ARCH_ISA_A64
   free(mem);
+else
+  _mm_free(mem);
+#endif
 }
 
 void CPUAllocator::zero(void* p, size_t n) {
