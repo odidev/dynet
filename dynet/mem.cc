@@ -10,7 +10,7 @@
 
 #include <fcntl.h>
 #if !_WINDOWS
-#if !_aarch64_
+#if !__ARM_ARCH_ISA_A64
 #include <mm_malloc.h>
 #endif
 #endif
