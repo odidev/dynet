@@ -20,8 +20,8 @@ jobs:
       arch: arm64
       compiler: gcc
       language: python
-      python: 3.10
-      env: PYVER=3.10 PYNUM=3 PYTHON_INSTALL=pip BUILD_ARCH=aarch64
+      python: 3.9
+      env: PYVER=3.9 PYNUM=3 PYTHON_INSTALL=pip BUILD_ARCH=aarch64
     #- os: linux
     #  compiler: gcc
     #  language: python
