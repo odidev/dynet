@@ -35,6 +35,7 @@ void* CPUAllocator::malloc(size_t n) {
     show_pool_mem_info();
     cerr << "CPU memory allocation failed n=" << n << " align=" << align << endl;
     throw dynet::out_of_memory("CPU memory allocation failed");
+    return ptr;
   }
 else
   void* ptr = _mm_malloc(n, align);
@@ -42,9 +43,9 @@ else
     show_pool_mem_info();
     cerr << "CPU memory allocation failed n=" << n << " align=" << align << endl;
     throw dynet::out_of_memory("CPU memory allocation failed");
+    return ptr;
   }
 #endif
-  return ptr;
 }
 
 void CPUAllocator::free(void* mem) {
