@@ -31,14 +31,19 @@ MemAllocator::~MemAllocator() {}
 void* CPUAllocator::malloc(size_t n) {
 #if !__ARM_ARCH_ISA_A64
   void* ptr = aligned_alloc(align, n);
-else
-  void* ptr = _mm_malloc(n, align);
-#endif
   if (!ptr) {
     show_pool_mem_info();
     cerr << "CPU memory allocation failed n=" << n << " align=" << align << endl;
     throw dynet::out_of_memory("CPU memory allocation failed");
   }
+else
+  void* ptr = _mm_malloc(n, align);
+  if (!ptr) {
+    show_pool_mem_info();
+    cerr << "CPU memory allocation failed n=" << n << " align=" << align << endl;
+    throw dynet::out_of_memory("CPU memory allocation failed");
+  }
+#endif
   return ptr;
 }
 
