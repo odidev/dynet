@@ -28,6 +28,7 @@ else
     if [[ "$TRAVIS_OS_NAME" == osx ]]; then
       source activate "$PYVER"
     fi
+    pip install cython numpy twine auditwheel
     pip install dynet --no-index -f dist
   fi
 
