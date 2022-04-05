@@ -37,7 +37,7 @@ void* CPUAllocator::malloc(size_t n) {
     throw dynet::out_of_memory("CPU memory allocation failed");
     return ptr;
   }
-else
+#else
   void* ptr = aligned_alloc(align, n);
   if (!ptr) {
     show_pool_mem_info();
@@ -51,7 +51,7 @@ else
 void CPUAllocator::free(void* mem) {
 #if !__ARM_ARCH_ISA_A64
   _mm_free(mem);
-else
+#else
   free(mem);
 #endif
 }
