@@ -30,7 +30,7 @@ MemAllocator::~MemAllocator() {}
 
 void* CPUAllocator::malloc(size_t n) {
 #if !__ARM_ARCH_ISA_A64
-  void* ptr = aligned_alloc(align, n);
+  void* ptr = _mm_malloc(n, align);
   if (!ptr) {
     show_pool_mem_info();
     cerr << "CPU memory allocation failed n=" << n << " align=" << align << endl;
@@ -38,7 +38,7 @@ void* CPUAllocator::malloc(size_t n) {
     return ptr;
   }
 else
-  void* ptr = _mm_malloc(n, align);
+  void* ptr = aligned_alloc(align, n);
   if (!ptr) {
     show_pool_mem_info();
     cerr << "CPU memory allocation failed n=" << n << " align=" << align << endl;
@@ -50,9 +50,9 @@ else
 
 void CPUAllocator::free(void* mem) {
 #if !__ARM_ARCH_ISA_A64
-  free(mem);
-else
   _mm_free(mem);
+else
+  free(mem);
 #endif
 }
 
