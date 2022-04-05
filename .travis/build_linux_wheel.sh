@@ -15,7 +15,7 @@ else
   yum install -y gmp-devel
 fi
 # Compile wheels
-for PYBIN in /opt/python/*${PYVER/./}*/bin; do
+for PYBIN in /opt/python/cp*${PYVER/./}*/bin; do
   "$PYBIN/pip" install -U pip
   "$PYBIN/pip" install --prefer-binary cryptography
   "$PYBIN/pip" install -U numpy twine cython
