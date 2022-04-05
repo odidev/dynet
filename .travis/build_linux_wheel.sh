@@ -2,18 +2,17 @@
 set -xe
 
 # To be run inside docker container
-export CMAKE=cmake28 EIGEN3_INCLUDE_DIR="$TRAVIS_BUILD_DIR/eigen" LD_LIBRARY_PATH="$TRAVIS_BUILD_DIR/build/dynet:$LD_LIBRARY_PATH"
+if [[ "$BUILD_ARCH" == aarch64 ]]; then
+   export CMAKE=cmake EIGEN3_INCLUDE_DIR="$TRAVIS_BUILD_DIR/eigen" LD_LIBRARY_PATH="$TRAVIS_BUILD_DIR/build/dynet:$LD_LIBRARY_PATH"
+else
+   export CMAKE=cmake28 EIGEN3_INCLUDE_DIR="$TRAVIS_BUILD_DIR/eigen" LD_LIBRARY_PATH="$TRAVIS_BUILD_DIR/build/dynet:$LD_LIBRARY_PATH"
+fi
 cd "$TRAVIS_BUILD_DIR"
-
-echo "PRINT"
-gcc --version
-python --version
-echo "PRINT END"
 
 if [[ "$BUILD_ARCH" == i686 ]]; then
   yum install -y openssl-devel
 else
-  yum install -y gmp-devel libgcc
+  yum install -y gmp-devel
 fi
 # Compile wheels
 for PYBIN in /opt/python/*${PYVER/./}*/bin; do
