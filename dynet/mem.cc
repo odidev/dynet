@@ -10,9 +10,9 @@
 
 #include <fcntl.h>
 #if !_WINDOWS
-#if !__ARM_ARCH_ISA_A64
+//#if !__ARM_ARCH_ISA_A64
 #include <mm_malloc.h>
-#endif
+//#endif
 #endif
 #include "dynet/except.h"
 #include "dynet/devices.h"
@@ -29,7 +29,7 @@ namespace dynet {
 MemAllocator::~MemAllocator() {}
 
 void* CPUAllocator::malloc(size_t n) {
-#if !__ARM_ARCH_ISA_A64
+//#if !__ARM_ARCH_ISA_A64
   cerr << "Inside IF";
   void* ptr = _mm_malloc(n, align);
   if (!ptr) {
@@ -38,7 +38,7 @@ void* CPUAllocator::malloc(size_t n) {
     throw dynet::out_of_memory("CPU memory allocation failed");
     return ptr;
   }
-#else
+/*#else
   cerr << "Inside ELSE";
   void* ptr = aligned_alloc(align, n);
   if (!ptr) {
@@ -47,15 +47,15 @@ void* CPUAllocator::malloc(size_t n) {
     throw dynet::out_of_memory("CPU memory allocation failed");
     return ptr;
   }
-#endif
+#endif*/
 }
 
 void CPUAllocator::free(void* mem) {
-#if !__ARM_ARCH_ISA_A64
+//#if !__ARM_ARCH_ISA_A64
   _mm_free(mem);
-#else
+/*#else
   free(mem);
-#endif
+#endif*/
 }
 
 void CPUAllocator::zero(void* p, size_t n) {
