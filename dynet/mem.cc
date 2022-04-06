@@ -29,33 +29,33 @@ namespace dynet {
 MemAllocator::~MemAllocator() {}
 
 void* CPUAllocator::malloc(size_t n) {
-#if !__ARM_ARCH_ISA_A64
-  cerr << "Inside IF";
-  void* ptr = _mm_malloc(n, align);
-  if (!ptr) {
-    show_pool_mem_info();
-    cerr << "CPU memory allocation failed n=" << n << " align=" << align << endl;
-    throw dynet::out_of_memory("CPU memory allocation failed");
-    return ptr;
-  }
-#else
-  cerr << "Inside ELSE";
-  void* ptr = aligned_alloc(align, n);
-  if (!ptr) {
-    show_pool_mem_info();
-    cerr << "CPU memory allocation failed n=" << n << " align=" << align << endl;
-    throw dynet::out_of_memory("CPU memory allocation failed");
-    return ptr;
-  }
-endif
+  #if !__ARM_ARCH_ISA_A64
+    cerr << "Inside IF";
+    void* ptr = _mm_malloc(n, align);
+    if (!ptr) {
+      show_pool_mem_info();
+      cerr << "CPU memory allocation failed n=" << n << " align=" << align << endl;
+      throw dynet::out_of_memory("CPU memory allocation failed");
+      return ptr;
+    }
+  #else
+    cerr << "Inside ELSE";
+    void* ptr = aligned_alloc(align, n);
+    if (!ptr) {
+      show_pool_mem_info();
+      cerr << "CPU memory allocation failed n=" << n << " align=" << align << endl;
+      throw dynet::out_of_memory("CPU memory allocation failed");
+      return ptr;
+    }
+  endif
 }
 
 void CPUAllocator::free(void* mem) {
-#if !__ARM_ARCH_ISA_A64
-  _mm_free(mem);
-#else
-  free(mem);
-#endif
+  #if !__ARM_ARCH_ISA_A64
+    _mm_free(mem);
+  #else
+    free(mem);
+  #endif
 }
 
 void CPUAllocator::zero(void* p, size_t n) {
