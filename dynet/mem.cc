@@ -30,6 +30,7 @@ MemAllocator::~MemAllocator() {}
 
 void* CPUAllocator::malloc(size_t n) {
 #if !__ARM_ARCH_ISA_A64
+  cerr << "Inside IF";
   void* ptr = _mm_malloc(n, align);
   if (!ptr) {
     show_pool_mem_info();
@@ -38,6 +39,7 @@ void* CPUAllocator::malloc(size_t n) {
     return ptr;
   }
 #else
+  cerr << "Inside ELSE";
   void* ptr = aligned_alloc(align, n);
   if (!ptr) {
     show_pool_mem_info();
