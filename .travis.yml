@@ -71,7 +71,7 @@ jobs:
       compiler: gcc
       language: python
       python: 3.6
-      env: PYVER=3.6 PYNUM=3 PYTHON_INSTALL=pip BUILD_ARCH=x86_64
+      env: PYVER=3.6 PYNUM=3 PYTHON_INSTALL=pip BUILD_ARCH=aarch64
     - os: linux
       compiler: gcc
       language: cpp
