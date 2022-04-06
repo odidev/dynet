@@ -17,9 +17,9 @@ stages:
 jobs:
   include:
     - os: linux
-      dist: focal
+      dist: xenial
       arch: arm64-graviton2
-      virt: vm
+      virt: lxd
       group: edge
       compiler: gcc
       language: python
@@ -31,27 +31,27 @@ jobs:
       language: python
       python: 3.6
       env: PYVER=3.6 PYNUM=3 PYTHON_INSTALL=pip BUILD_ARCH=x86_64
-    - os: linux
-      arch: arm64-graviton2
-      virt: lxd
-      group: edge
-      dist: xenial
-      compiler: gcc
-      language: python
-      python: 3.7
-      env: PYVER=3.7 PYNUM=3 PYTHON_INSTALL=pip BUILD_ARCH=aarch64
-    - os: linux
-      arch: arm64-graviton2
-      virt: lxd
-      group: edge
-      dist: xenial
-      compiler: gcc
-      language: python
-      python: 3.8
-      env: PYVER=3.8 PYNUM=3 PYTHON_INSTALL=pip BUILD_ARCH=aarch64
+    #- os: linux
+    #  arch: arm64-graviton2
+    #  virt: lxd
+    #  group: edge
+    #  dist: xenial
+#      compiler: gcc
+  #    language: python
+ #     python: 3.7
+  #    env: PYVER=3.7 PYNUM=3 PYTHON_INSTALL=pip BUILD_ARCH=aarch64
+  #  - os: linux
+  #    arch: arm64-graviton2
+  #    virt: lxd
+  #    group: edge
+  #    dist: xenial
+  #    compiler: gcc
+  #    language: python
+  #    python: 3.8
+  #    env: PYVER=3.8 PYNUM=3 PYTHON_INSTALL=pip BUILD_ARCH=aarch64
     
 install:
-  #- travis_retry .travis/install_dependencies.sh
+  - travis_retry .travis/install_dependencies.sh
   - export EIGEN3_INCLUDE_DIR=/usr/local/include/eigen3
   - if [ "$TRAVIS_OS_NAME" == osx ]; then export PATH="$PWD/miniconda/bin:$PATH"; source activate "$PYVER"; fi
 
