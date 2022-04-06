@@ -199,7 +199,7 @@ after_failure:
   - cat $TRAVIS_BUILD_DIR/build/CMakeFiles/CMakeError.log
 
 script:
-  - .travis/test_dynet.sh
+  - travis_wait 50 .travis/test_dynet.sh
 
 deploy:
   provider: script
