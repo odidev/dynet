@@ -47,7 +47,7 @@ void* CPUAllocator::malloc(size_t n) {
       throw dynet::out_of_memory("CPU memory allocation failed");
       return ptr;
     }
-  endif
+  #endif
 }
 
 void CPUAllocator::free(void* mem) {
