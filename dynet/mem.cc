@@ -28,6 +28,7 @@ MemAllocator::~MemAllocator() {}
 
 void* CPUAllocator::malloc(size_t n) {
   //void* ptr = _mm_malloc(n, align);
+  cerr << "Inside CPU";
   void* ptr = aligned_alloc(align, n);
   if (!ptr) {
     show_pool_mem_info();
@@ -38,6 +39,7 @@ void* CPUAllocator::malloc(size_t n) {
 }
 
 void CPUAllocator::free(void* mem) {
+  cerr << "Inside Free";
   free(mem);
   //_mm_free(mem);
 }
