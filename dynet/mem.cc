@@ -10,13 +10,11 @@
 
 #include <fcntl.h>
 #if !_WINDOWS
-#if !__ARM_ARCH_ISA_A64
+#if !_ARM_ARCH_ISA_A64
 #include <mm_malloc.h>
 #endif
 #endif
 
-#define _mm_free(mem) free(mem)
-#define _mm_malloc(n, align) aligned_alloc(align, n)
 #include "dynet/except.h"
 #include "dynet/devices.h"
 #if HAVE_CUDA
@@ -32,14 +30,7 @@ namespace dynet {
 MemAllocator::~MemAllocator() {}
 
 void* CPUAllocator::malloc(size_t n) {
-  void* ptr = _mm_malloc(n, align);
-  if (!ptr) {
-    show_pool_mem_info();
-    cerr << "CPU memory allocation failed n=" << n << " align=" << align << endl;
-    throw dynet::out_of_memory("CPU memory allocation failed");
-    return ptr;
-  }
-  /*#if !__ARM_ARCH_ISA_A64
+  #if !_ARM_ARCH_ISA_A64
     cerr << "Inside IF";
     void* ptr = _mm_malloc(n, align);
     if (!ptr) {
@@ -57,7 +48,7 @@ void* CPUAllocator::malloc(size_t n) {
       throw dynet::out_of_memory("CPU memory allocation failed");
       return ptr;
     }
-  #endif*/
+  #endif
 }
 
 void CPUAllocator::free(void* mem) {
