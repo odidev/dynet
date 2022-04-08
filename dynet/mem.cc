@@ -10,7 +10,7 @@
 
 #include <fcntl.h>
 #if !_WINDOWS
-#if !_ARM_ARCH_ISA_A64
+#if !__ARM_ARCH_ISA_A64
 #include <mm_malloc.h>
 #endif
 #endif
@@ -30,7 +30,7 @@ namespace dynet {
 MemAllocator::~MemAllocator() {}
 
 void* CPUAllocator::malloc(size_t n) {
-  #if !_ARM_ARCH_ISA_A64
+  #if !__ARM_ARCH_ISA_A64
     cerr << "Inside IF";
     void* ptr = _mm_malloc(n, align);
     if (!ptr) {
@@ -52,12 +52,11 @@ void* CPUAllocator::malloc(size_t n) {
 }
 
 void CPUAllocator::free(void* mem) {
-  _mm_free(mem);
-  /*#if !__ARM_ARCH_ISA_A64
+  #if !__ARM_ARCH_ISA_A64
     _mm_free(mem);
   #else
     free(mem);
-  #endif*/
+  #endif
 }
 
 void CPUAllocator::zero(void* p, size_t n) {
