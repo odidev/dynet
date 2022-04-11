@@ -15,6 +15,7 @@ def gradient_callable(x):
 class TestInput(unittest.TestCase):
 
     def setUp(self):
+        print("TestInput")
         self.input_vals = np.arange(81)
         self.squared_norm = (self.input_vals**2).sum()
         self.shapes = [(81,), (3, 27), (3, 3, 9), (3, 3, 3, 3)]
@@ -114,6 +115,7 @@ class TestInput(unittest.TestCase):
 class TestParameters(unittest.TestCase):
 
     def setUp(self):
+        print("TestParameters")
         # Create model
         self.m = dy.ParameterCollection()
         # Parameters
@@ -325,6 +327,7 @@ class TestParameters(unittest.TestCase):
 class TestBatchManipulation(unittest.TestCase):
 
     def setUp(self):
+        print("TestBatchManipulation")
         # create model
         self.m = dy.ParameterCollection()
         # Parameter
@@ -363,6 +366,7 @@ class TestBatchManipulation(unittest.TestCase):
 
 class TestIOPartialWeightDecay(unittest.TestCase):
     def setUp(self):
+        print("TestIOPartialWeightDecay")
         self.file = "tmp.model"
         self.m = dy.ParameterCollection()
         self.m2 = dy.ParameterCollection()
@@ -383,6 +387,7 @@ class TestIOPartialWeightDecay(unittest.TestCase):
 
 class TestIOEntireModel(unittest.TestCase):
     def setUp(self):
+        print("TestIOEntireModel")
         self.file = "bilstm.model"
         self.m = dy.ParameterCollection()
         self.m2 = dy.ParameterCollection()
@@ -417,6 +422,7 @@ class TestIOEntireModel(unittest.TestCase):
 
 class TestIOPartial(unittest.TestCase):
     def setUp(self):
+        print("TestIOPartial")
         self.file = "tmp.model"
         self.m = dy.ParameterCollection()
         self.m2 = dy.ParameterCollection()
@@ -435,6 +441,7 @@ class TestIOPartial(unittest.TestCase):
 class TestIOHighLevelAPI(unittest.TestCase):
 
     def setUp(self):
+        print("TestIOHighLevelAPI")
         self.file = "bilstm.model"
         # create models
         self.m = dy.ParameterCollection()
@@ -455,6 +462,7 @@ class TestExpression(unittest.TestCase):
 
     def setUp(self):
 
+        print("TestExpression")
         self.v1 = np.arange(10)
         self.v2 = np.arange(10)[::-1]
 
@@ -497,6 +505,7 @@ class TestExpression(unittest.TestCase):
 class TestOperations(unittest.TestCase):
 
     def setUp(self):
+        print("TestOperations")
         # create model
         self.m = dy.ParameterCollection()
         self.v1 = np.arange(10)
@@ -522,6 +531,7 @@ class TestOperations(unittest.TestCase):
 class TestSlicing(unittest.TestCase):
 
     def test_slicing(self):
+        print("TestSlicing")
         dy.renew_cg()
         data = np.random.random((10, 10, 10))
         self.assertTrue(np.allclose(dy.inputTensor(
@@ -543,6 +553,7 @@ class TestSlicing(unittest.TestCase):
 class TestSimpleRNN(unittest.TestCase):
 
     def setUp(self):
+        print("TestSimpleRNN")
         # create model
         self.m = dy.ParameterCollection()
         self.rnn = dy.SimpleRNNBuilder(2, 10, 10, self.m)
@@ -564,6 +575,7 @@ class TestSimpleRNN(unittest.TestCase):
 class TestGRU(unittest.TestCase):
 
     def setUp(self):
+        print("TestGRU")
         # create model
         self.m = dy.ParameterCollection()
         self.rnn = dy.GRUBuilder(2, 10, 10, self.m)
@@ -585,6 +597,7 @@ class TestGRU(unittest.TestCase):
 class TestVanillaLSTM(unittest.TestCase):
 
     def setUp(self):
+        print("TestVanillaLSTM")
         # create model
         self.m = dy.ParameterCollection()
         self.rnn = dy.VanillaLSTMBuilder(2, 10, 10, self.m)
@@ -629,6 +642,7 @@ class TestVanillaLSTM(unittest.TestCase):
 class TestCoupledLSTM(unittest.TestCase):
 
     def setUp(self):
+        print("TestCoupledLSTM")
         # create model
         self.m = dy.ParameterCollection()
         self.rnn = dy.CoupledLSTMBuilder(2, 10, 10, self.m)
@@ -672,6 +686,7 @@ class TestCoupledLSTM(unittest.TestCase):
 class TestSparseLSTM(unittest.TestCase):
 
     def setUp(self):
+        print("TestSparseLSTM")
         # create model
         self.m = dy.ParameterCollection()
         self.rnn = dy.SparseLSTMBuilder(2, 10, 10, self.m)
@@ -691,6 +706,7 @@ class TestSparseLSTM(unittest.TestCase):
 class TestFastLSTM(unittest.TestCase):
 
     def setUp(self):
+        print("TestFastLSTM")
         # create model
         self.m = dy.ParameterCollection()
         self.rnn = dy.FastLSTMBuilder(2, 10, 10, self.m)
@@ -735,6 +751,7 @@ class TestFastLSTM(unittest.TestCase):
 class TestStandardSoftmax(unittest.TestCase):
 
     def setUp(self):
+        print("TestStandardSoftmax")
         # create model
         self.pc = dy.ParameterCollection()
         self.sm = dy.StandardSoftmaxBuilder(3, 10, self.pc, True)
@@ -757,6 +774,7 @@ class TestStandardSoftmax(unittest.TestCase):
 class TestClassFactoredSoftmax(unittest.TestCase):
 
     def setUp(self):
+        print("TestClassFactoredSoftmax")
         # create model
         self.pc = dy.ParameterCollection()
         dic = dict()
