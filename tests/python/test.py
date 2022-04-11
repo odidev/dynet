@@ -374,16 +374,21 @@ class TestIOPartialWeightDecay(unittest.TestCase):
         self.t = dy.SimpleSGDTrainer(self.m)
 
     def test_save_load(self):
+        print("TestIOPartialWeightDecay_test_save_load")
         self.p.forward()
         self.p.backward()
+        print("11111111111111111111")
         self.t.update()
         dy.renew_cg()
+        print("2222222222222222222")
         v1 = self.p.value()
         dy.save(self.file, [self.p])
+        print("33333333333333333333")
         [p2] = dy.load(self.file, self.m2)
         v2 = p2.value()
+        print("44444444444444444444")
         self.assertTrue(np.allclose(v1, v2))
-
+        print("5555555555555555555555")
 
 class TestIOEntireModel(unittest.TestCase):
     def setUp(self):
