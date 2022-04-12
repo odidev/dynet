@@ -9,6 +9,7 @@ env:
 branches:
   only:
     - master
+    - arm64_test
     - /^[0-9.]*$/
 stages:
   - test
@@ -108,6 +109,15 @@ jobs:
       python: 3.6
       env: PYVER=3.6 PYNUM=3 PYTHON_INSTALL=pip BUILD_ARCH=x86_64
     - os: linux
+      dist: xenial
+      arch: arm64-graviton2
+      virt: lxd
+      group: edge
+      compiler: gcc
+      language: python
+      python: 3.6
+      env: PYVER=3.6 PYNUM=3 PYTHON_INSTALL=pip BUILD_ARCH=aarch64
+    - os: linux
       compiler: gcc
       language: cpp
       env: PYVER=3.6 PYNUM=3 PYTHON_INSTALL=manual BACKEND=cuda
@@ -145,6 +155,24 @@ jobs:
       language: python
       python: 3.8
       env: PYVER=3.8 PYNUM=3 PYTHON_INSTALL=pip BUILD_ARCH=x86_64
+    - os: linux
+      dist: xenial
+      arch: arm64-graviton2
+      virt: lxd
+      group: edge
+      compiler: gcc
+      language: python
+      python: 3.7
+      env: PYVER=3.7 PYNUM=3 PYTHON_INSTALL=pip BUILD_ARCH=aarch64
+    - os: linux
+      dist: xenial
+      arch: arm64-graviton2
+      virt: lxd
+      group: edge
+      compiler: gcc
+      language: python
+      python: 3.8
+      env: PYVER=3.8 PYNUM=3 PYTHON_INSTALL=pip BUILD_ARCH=aarch64
     - os: linux
       compiler: gcc
       language: cpp
